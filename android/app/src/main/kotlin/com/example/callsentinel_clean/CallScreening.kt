@@ -1,8 +1,7 @@
-package com.example.callsentinel
+package com.example.callsentinel_clean
 
 import android.telecom.CallScreeningService
 import android.telecom.Call
-import android.telecom.CallScreeningService.CallResponse
 
 class CallScreening : CallScreeningService() {
     override fun onScreenCall(callDetails: Call.Details) {
