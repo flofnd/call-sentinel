@@ -1,0 +1,33 @@
+name: callsentinel_clean
+description: A Flutter app for AI call screening.
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.8.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # HTTP for API calls (e.g. GPT, TTS)
+  http: ^1.2.1
+
+  # Local storage for call logs
+  hive: ^2.2.3
+  path_provider: ^2.1.2
+
+  # Text-to-speech
+  flutter_tts: ^3.8.3
+
+  # Request runtime permissions
+  permission_handler: ^11.3.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/logo.png
