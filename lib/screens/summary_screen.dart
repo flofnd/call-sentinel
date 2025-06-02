@@ -15,11 +15,31 @@ class SummaryScreen extends StatelessWidget {
             elevation: 3,
             margin: const EdgeInsets.symmetric(vertical: 10),
             child: ListTile(
-              title: Text('Call with Unknown ${index + 1}'),
-              subtitle: const Text(
-                  'AI: The caller said they were from the bank, offering a new service.'),
-              trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-              onTap: () {},
+              leading: const CircleAvatar(
+                backgroundColor: Colors.grey,
+                child: Icon(Icons.person, color: Colors.white),
+              ),
+              title: Text('Unknown Caller ${index + 1}'),
+              subtitle: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 4),
+                  const Text(
+                    'AI: Claimed to be from your bank offering a new loan.',
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    '2 mins ago',
+                    style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+                  ),
+                ],
+              ),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () {
+                // Detail screen or playback can go here
+              },
             ),
           );
         },

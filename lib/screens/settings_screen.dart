@@ -8,19 +8,43 @@ class SettingsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Settings')),
       body: ListView(
-        children: const [
-          ListTile(
-            title: Text('Enable Call Screening'),
-            trailing: Switch(value: true, onChanged: null),
+        children: [
+          const Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Text(
+              "Call Screening",
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+          ),
+          SwitchListTile(
+            title: const Text('Enable Call Screening'),
+            value: true,
+            onChanged: (_) {
+              // Handle toggle
+            },
+          ),
+          SwitchListTile(
+            title: const Text('Auto Summarize Calls'),
+            value: true,
+            onChanged: (_) {
+              // Handle toggle
+            },
+          ),
+          const Divider(),
+          const Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Text(
+              "AI Preferences",
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
           ),
           ListTile(
-            title: Text('Auto-summarize Calls'),
-            trailing: Switch(value: true, onChanged: null),
-          ),
-          ListTile(
-            title: Text('Use My Voice Model'),
-            subtitle: Text('Currently: Default AI Voice'),
-            trailing: Icon(Icons.chevron_right),
+            title: const Text('Voice Personality'),
+            subtitle: const Text('Default AI Voice'),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () {
+              // Future voice profile selection
+            },
           ),
         ],
       ),
