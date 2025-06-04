@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class AISummaryService {
-  static const _apiKey = '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'; // 🔒 Replace with your real key
+  static const _apiKey = ''; // 🔒 Replace with your real key
   static const _apiUrl = 'https://api.openai.com/v1/chat/completions';
 
   static Future<String> generateSummary(String transcript) async {
