@@ -1,9 +1,33 @@
 import 'package:flutter/material.dart';
 import 'summary_screen.dart';
 import 'settings_screen.dart';
+import '../services/ai_summary_service.dart';
+import '../services/summary_storage_service.dart';
+import '../models/call_summary.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
+
+  Future<void> _simulateCall(BuildContext context) async {
+    const fakeNumber = "+1234567890";
+    const fakeTranscript = "Caller $fakeNumber claimed to be from your bank and requested sensitive information.";
+
+    final summary = await AISummaryService.generateSummary(fakeTranscript);
+
+    final callSummary = CallSummary(
+      caller: fakeNumber,
+      summary: summary,
+      timestamp: DateTime.now(),
+    );
+
+    await SummaryStorageService.addSummary(callSummary);
+
+    if (context.mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("✅ Simulated call added to summaries")),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,23 +79,36 @@ class HomeScreen extends StatelessWidget {
                     minimumSize: const Size(double.infinity, 50),
                   ),
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (_) => const SummaryScreen()));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const SummaryScreen()),
+                    );
                   },
                 ),
                 TextButton(
                   child: const Text('Settings'),
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (_) => const SettingsScreen()));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const SettingsScreen()),
+                    );
                   },
+                ),
+                const SizedBox(height: 30),
+                ElevatedButton.icon(
+                  icon: const Icon(Icons.phone_forwarded),
+                  label: const Text("Simulate Incoming Call"),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blueGrey,
+                    minimumSize: const Size(double.infinity, 50),
+                  ),
+                  onPressed: () => _simulateCall(context),
                 ),
               ],
             ),
           ),
         ),
       ),
-
     );
   }
 }

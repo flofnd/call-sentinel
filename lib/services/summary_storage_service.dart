@@ -16,6 +16,11 @@ class SummaryStorageService {
     await box.add(summary);
   }
 
+  static Future<void> deleteSummary(CallSummary summary) async {
+    final box = Hive.box<CallSummary>(boxName);
+    await box.delete(summary);
+  }
+
   static List<CallSummary> getSummaries() {
     final box = Hive.box<CallSummary>(boxName);
     return box.values.toList().reversed.toList();
